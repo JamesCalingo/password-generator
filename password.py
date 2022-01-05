@@ -1,23 +1,30 @@
 import random
 import string
 
-"""This generates a string of randomized characters of a user-defined length"""
+"""
+This generates a string of randomized characters of a user-defined length
+"""
 
-def generate_password(length = 15):
-  length = int(input("How long would you like your password to be? "))
-  while length < 8 or length > 20:
-    print("Your password should probably be between 8 and 20 characters. Try again.")
-    length = int(input("How long would you like your password to be? "))
 
-  password = ""
-  for i in range(length):
-    char = random.choice(string.printable)
-    if char in string.whitespace:
-      char = random.choice(string.printable)
-    # elif char == password[i - 1]:
-    #   char = random.choice(string.printable)
-    else:
-      password += (char)
-  return password
+def generate_password():
+    length_input = input(
+        "How long would you like your password to be?\n(NOTE: It should probably be between 8 and 30 characters.) ")
+    while not length_input.isdigit():
+        print("I can't interpret that into a password length. Try again.")
+        length_input = input(
+            "How long would you like your password to be?\n(NOTE: It should probably be between 8 and 30 characters.) ")
+
+    length = int(length_input)
+    password = ""
+    for i in range(length):
+        char = random.choice(string.printable)
+        if char in string.whitespace:
+            char = random.choice(string.printable)
+        # elif char == password[i - 1]:
+        #   char = random.choice(string.printable)
+        else:
+            password += (char)
+    return (f"Your new password is: {password}.\nBe sure to copy this (or memorize it if you can...)")
+
 
 print(generate_password())
