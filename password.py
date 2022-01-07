@@ -1,5 +1,6 @@
 import random
 import string
+import pyperclip as pc
 
 """
 This generates a string of randomized characters of a user-defined length
@@ -24,6 +25,7 @@ def generate_password():
         #   char = random.choice(string.printable)
         else:
             password += (char)
+    pc.copy(password)
     return (f"Your new password is: {password}.\nBe sure to copy this (or memorize it if you can...)")
 
 
